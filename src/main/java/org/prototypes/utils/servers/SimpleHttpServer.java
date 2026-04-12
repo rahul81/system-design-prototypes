@@ -12,12 +12,15 @@ public class SimpleHttpServer {
     public static class RequestHandler implements HttpHandler {
 
         private final String server_name;
-        public RequestHandler(String server_name){
+
+        public RequestHandler(String server_name) {
 
             this.server_name = server_name;
         }
+
         @Override
         public void handle(HttpExchange exchange) throws IOException {
+            // Create a response String and response back in bytes (String to Bytes)
             String response = "Pong, from backend server : " + this.server_name;
             exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
@@ -26,9 +29,9 @@ public class SimpleHttpServer {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        final int PORT ;
+        final int PORT;
         final String server_name;
 
         if (args.length < 2) {
@@ -43,7 +46,7 @@ public class SimpleHttpServer {
             // start a listener on port 9000
             HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
 
-            server.createContext("/ping", new RequestHandler(server_name));
+            server.createContext("/api/ping", new RequestHandler(server_name));
 
             server.setExecutor(null);
             server.start();
@@ -52,8 +55,6 @@ public class SimpleHttpServer {
         } catch (Exception e) {
             System.out.println("Exception while parsing args : " + e.getMessage());
         }
-
-
 
 
     }
