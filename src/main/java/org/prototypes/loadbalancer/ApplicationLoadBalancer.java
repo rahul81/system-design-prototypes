@@ -17,13 +17,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ApplicationLoadBalancer {
 
-    private static final String[] BACKEND_SERVERS = {
-            "http://localhost:8081",
-            "http://localhost:8082",
-            "http://localhost:8083",
-            "http://localhost:8084",
-    };
-    private static final int PORT = 9000;
+    private static final String[] BACKEND_SERVERS = Constants.BACKEND_SERVERS;
+    private static final int PORT = Constants.LOAD_BALANCER_PORT;
 
     private static final AtomicInteger counter = new AtomicInteger(0);
     private static final HttpClient httpClient = HttpClient.newHttpClient();

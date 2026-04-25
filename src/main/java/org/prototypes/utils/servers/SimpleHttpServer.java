@@ -29,6 +29,17 @@ public class SimpleHttpServer {
         }
     }
 
+    public static class CheckHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            String response = "I am alive!";
+            exchange.sendResponseHeaders(200, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
+    }
+
     public static void main(String[] args) {
 
         final int PORT;
@@ -47,6 +58,7 @@ public class SimpleHttpServer {
             HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
 
             server.createContext("/api/ping", new RequestHandler(server_name));
+            server.createContext("/api/check", new CheckHandler());
 
             server.setExecutor(null);
             server.start();

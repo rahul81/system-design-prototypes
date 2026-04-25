@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class NetworkLoadBalancer {
 
-    private static final String[] BACKEND_SERVERS = {"localhost:8081", "localhost:8082", "localhost:8083", "localhost:8084",};
+    private static final String[] BACKEND_SERVERS = Constants.BACKEND_SERVERS;
     private static final int PORT = 9000;
 
     private static final AtomicInteger counter = new AtomicInteger(0);
