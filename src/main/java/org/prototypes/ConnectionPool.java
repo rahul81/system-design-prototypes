@@ -109,14 +109,11 @@ public class ConnectionPool {
 
         for (int i = 0; i < 100; i++) {
             int finalI = i;
-            executors.submit(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        task.runSqlTask(finalI + 1);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+            executors.submit(() -> {
+                try {
+                    task.runSqlTask(finalI + 1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             });
         }
