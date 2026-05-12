@@ -4,24 +4,28 @@ import java.util.HashMap;
 
 public class Store {
 
-    private final HashMap<String, ValueType> store;
+    private final HashMap<String, Object> store;
 
     public Store() {
-        store = new HashMap<String, ValueType>();
+//        Demonstration for using complex object class as value in the hashmap, Object class be directly used as value type in HashMap in Java as present in the active code.
+//        store = new HashMap<String, ValueType>();
+        store = new HashMap<String, Object>();
     }
 
     public void put(String key, Object value){
-        store.put(key, new ValueType(value.getClass(), value));
+//        store.put(key, new ValueType(value.getClass(), value));
+        store.put(key, value);
     }
 
     public Class<?> getType(String key){
-        return store.get(key).getType();
+        return store.get(key).getClass();
     }
 
     public Object get(String key){
-        ValueType data = store.get(key);
-        if (data == null) {return null;}
-        return  data.getData();
+        //        ValueType data = store.get(key);
+        //        if (data == null) {return null;}
+        //        return  data.getData();
+        return store.get(key);
     }
 
     public void remove(String key) {
