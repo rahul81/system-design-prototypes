@@ -1,6 +1,8 @@
 package org.prototypes.memorystore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Store {
 
@@ -37,12 +39,15 @@ public class Store {
         Store memstore = new Store();
         memstore.put("Test", "Success!");
         memstore.put("TestInt", 111);
+        memstore.put("TestList", List.of(1, 2, 3));
 
         System.out.println(memstore.get("Test"));
         System.out.println(memstore.get("TestInt"));
+        System.out.println(memstore.get("TestList"));
 
         memstore.remove("Test");
         memstore.remove("TestInt");
+        memstore.remove("TestList");
         System.out.println(memstore.get("Test"));
 
     }
